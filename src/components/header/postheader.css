@@ -1,0 +1,45 @@
+header.post-template-header {
+  border-bottom: 1px solid lightgrey;
+  display: flex;
+  flex-direction: row;
+  height: 80px;
+  width: 100%;
+}
+
+div.post-template-header-keywords {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  justify-content: flex-start;
+  margin-left: 44px;
+  width: calc(100% - 190px);
+}
+
+div.post-template-header-keywords p {
+  margin-right: 20px;
+}
+
+#logo-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: 80px;
+  justify-content: center;
+  margin: 0 30px 0 30px;
+  width: 80px;
+}
+
+#logo {
+  background: url("../../images/logo_ppdotdev.webp");
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 6px;
+  filter: saturate(0.3);
+  height: 50px;
+  width: 50px;
+}
+
+#logo:hover {
+  cursor: pointer;
+}

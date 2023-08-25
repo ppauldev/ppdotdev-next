@@ -1,0 +1,90 @@
+a.post-tile-slug {
+  align-items: center;
+  background-color: white;
+  border: 1px solid lightgrey;
+  border-radius: 8px;
+  color: rgb(110, 110, 110);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 0;
+  justify-content: flex-start;
+  margin: 10px;
+  text-decoration: none;
+  transition: all 0.1s ease-out;
+}
+
+a.post-tile-slug:hover {
+  border: 1px solid grey;
+  transition: all 0.1s ease-in;
+}
+
+article.post-tile {
+  height: 100%;
+  width: 100%;
+}
+
+.post-tile-image-wrapper {
+  overflow: hidden;
+}
+
+.post-tile-image {
+  background-color: darkslategrey;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  height: 200px;
+  transition: background-size 0.25s;
+}
+
+.post-tile-content {
+  height: 260px;
+  padding: 20px;
+}
+
+.post-tile-content-main {
+  display: inline-block;
+  height: 240px;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.post-tile-content-side {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  justify-content: flex-start;
+  height: 20px;
+}
+
+article h2 {
+  color: rgb(36, 36, 36);
+  padding-bottom: 20px;
+}
+
+article h3 {
+  font-size: 14px;
+  font-weight: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 428px) {
+  a.post-tile-slug {
+    height: 470px;
+  }
+
+  .post-tile-image {
+    height: 160px;
+  }
+
+  article h2 {
+    font-size: 20px;
+  }
+
+  article h3 {
+    font-size: 12px;
+  }
+}

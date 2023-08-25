@@ -1,18 +1,12 @@
 "use client"
 
 import useSWR from "swr"
-
-import "./page.css"
-
+import request from "graphql-request"
 import { PreviewTile } from "@/components/main/PreviewTile"
 import PostTile from "@/components/main/PostTile"
-import request from "graphql-request"
-import { queryPostsAll } from "@/constants/queries"
 
-// export async function generateMetadata() {}
-// export const metadata: Metadata = {
-//   title: "...",
-// }
+import "./page.css"
+import { queryPostsCleanCode } from "@/constants/queries"
 
 const fetcher = (query: any) => request(process.env.NEXT_PUBLIC_GRAPH_CMS_API_URL as string, query)
 
@@ -29,7 +23,7 @@ interface IPostTileProps {
 }
 
 export default function Page() {
-  const { data, error, isLoading }: any = useSWR(queryPostsAll, fetcher)
+  const { data, error, isLoading }: any = useSWR(queryPostsCleanCode, fetcher)
 
   if (isLoading) {
     return (
