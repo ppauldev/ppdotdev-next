@@ -16,6 +16,7 @@ import PostHeader from "@/components/header/PostHeader"
 import { SEO } from "@/components/header/SEO"
 import { getQueryPostBySlug, queryPostsForPaths } from "@/constants/queries"
 import { IPostIntroProps, IPostMarkdownProps, IPostProps } from "@/types/base.types"
+import Link from "next/link"
 
 export async function getStaticPaths() {
   const resRaw = await fetch(process.env.NEXT_PUBLIC_GRAPH_CMS_API_URL as string, {
@@ -99,6 +100,13 @@ const PostMarkdown: React.FC<IPostMarkdownProps> = ({ rtBody }): React.ReactElem
     <RichText
       content={rtBody?.raw}
       renderers={{
+        a: ({ children, className, href, id, title, rel }) => {
+          return (
+            <Link className={className} href={href ?? ""} id={id} title={title} rel={rel}>
+              {children}
+            </Link>
+          )
+        },
         code_block: ({ children }) => {
           return (
             <pre className="line-numbers language-javascript">
