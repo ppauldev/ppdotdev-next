@@ -2,6 +2,7 @@ import * as React from "react"
 
 import "./techtag.css"
 import { techTagInfo } from "@/constants/techTagInfo"
+import Link from "next/link"
 
 interface ITechTag {
   keyword: string,
@@ -14,7 +15,9 @@ const TechTag: React.FC<ITechTag> = ({ keyword }): React.ReactElement => {
   const techTagSource = techTagInfo[normalizedKeyword]?.imageSource
 
   return (
-    <a className={techTagClassName} href={techTagUrl} data-imagesource={techTagSource} title={techTagUrl} />
+    <Link href={techTagUrl}>
+      <div className={techTagClassName} data-imagesource={techTagSource} title={techTagUrl} />
+    </Link>
   )
 }
 

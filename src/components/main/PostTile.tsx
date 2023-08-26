@@ -3,6 +3,7 @@ import * as React from "react"
 import moment from "moment"
 
 import "./posttile.css"
+import Link from "next/link"
 
 interface IPostTile {
   post: IPostTileProps
@@ -34,33 +35,34 @@ const PostTile: React.FC<IPostTile> = ({ post }): React.ReactElement => {
   }
 
   return (
-    <a
-      href={post.slug}
-      className="post-tile-slug"
-      onMouseOver={handleOnMouseOver}
-      onMouseLeave={handleOnMouseLeave}
-    >
-      <article className="post-tile">
-        <div className="post-tile-image-wrapper">
-          <div
-            id={`post-tile-image-${post.slug}`}
-            className="post-tile-image"
-            style={{ background: `url(${post?.image?.url}) 50% / 100%` }}
-            data-imagesource={post?.imageSource}
-            data-imagelicense={post?.imageLicense}
-          />
-        </div>
-        <div
-          className="post-tile-content"
-        >
-          <div className="post-tile-content-main">
-            <h2>{post.title}</h2>
-            <h3>{post.preview}</h3>
+    <Link href={post.slug}>
+      <div
+        className="post-tile-slug"
+        onMouseOver={handleOnMouseOver}
+        onMouseLeave={handleOnMouseLeave}
+      >
+        <article className="post-tile">
+          <div className="post-tile-image-wrapper">
+            <div
+              id={`post-tile-image-${post.slug}`}
+              className="post-tile-image"
+              style={{ background: `url(${post?.image?.url}) 50% / 100%` }}
+              data-imagesource={post?.imageSource}
+              data-imagelicense={post?.imageLicense}
+            />
           </div>
-          <p className="post-tile-content-side">{moment(post.date).format("LL")}</p>
-        </div>
-      </article>
-    </a>
+          <div
+            className="post-tile-content"
+          >
+            <div className="post-tile-content-main">
+              <h2>{post.title}</h2>
+              <h3>{post.preview}</h3>
+            </div>
+            <p className="post-tile-content-side">{moment(post.date).format("LL")}</p>
+          </div>
+        </article>
+      </div>
+    </Link>
   )
 }
 

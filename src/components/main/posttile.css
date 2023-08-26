@@ -1,4 +1,4 @@
-a.post-tile-slug {
+div.post-tile-slug {
   align-items: center;
   background-color: white;
   border: 1px solid lightgrey;
@@ -14,7 +14,7 @@ a.post-tile-slug {
   transition: all 0.1s ease-out;
 }
 
-a.post-tile-slug:hover {
+div.post-tile-slug:hover {
   border: 1px solid grey;
   transition: all 0.1s ease-in;
 }
@@ -72,7 +72,7 @@ article h3 {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 428px) {
-  a.post-tile-slug {
+  div.post-tile-slug {
     height: 470px;
   }
 

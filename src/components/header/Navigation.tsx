@@ -1,9 +1,10 @@
 "use client"
 
 import * as React from "react"
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 import "./navigation.css"
+import Link from "next/link";
 
 const navigationItems: string[][] = Object.entries({
   // attributeValue: textValue //
@@ -18,12 +19,13 @@ interface INavigation { }
 
 const Navigation: React.FC<INavigation> = (): React.ReactElement => {
   const pathname = usePathname()
-  const router = useRouter();
 
   return (
     <header>
       <div id="logo-wrapper">
-        <div id="logo" onClick={() => router.push("/")} />
+        <Link href="/">
+          <div id="logo" />
+        </Link>
       </div>
       <nav>
         <ul>
@@ -33,10 +35,11 @@ const Navigation: React.FC<INavigation> = (): React.ReactElement => {
                 key={attributeValue}
                 id={attributeValue === "coffee" ? "special" : ""}
                 className={(pathname as string).replace("/", "") === attributeValue ? "active" : ""}
-                onClick={() => router.push(`/${attributeValue}`)}
                 value={attributeValue}
               >
-                {attributeValue !== "coffee" ? textValue : "📚 ☕"}
+                <Link href={`/${attributeValue}`}>
+                  {attributeValue !== "coffee" ? textValue : "📚 ☕"}
+                </Link>
               </li>
             )
           })}

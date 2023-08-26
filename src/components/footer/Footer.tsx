@@ -1,16 +1,14 @@
 "use client"
 
 import * as React from "react"
-import { useRouter } from "next/navigation";
 
 import "./footer.css"
 import TechTag from "../main/TechTag";
+import Link from "next/link";
 
 interface IFooter { }
 
 const Footer: React.FC<IFooter> = (): React.ReactElement => {
-  const router = useRouter()
-
   return (
     <footer>
       <div>
@@ -23,7 +21,7 @@ const Footer: React.FC<IFooter> = (): React.ReactElement => {
           <div className="tech-tags">
             <TechTag key="github" keyword="github" />
             <TechTag key="linkedin" keyword="linkedin" />
-            <div id="link-mail-form" onClick={() => router.push("/contact")}>
+            <div id="link-mail-form">
               <TechTag key="mail" keyword="mail" />
             </div>
           </div>
@@ -48,14 +46,14 @@ const SiteStamp = () => {
   return (
     <p>
       © {new Date().getFullYear() + " "}
-      <a
+      <Link
         href="https://ppauldev.github.io/cv/"
         hrefLang="en"
         rel="author"
         style={{ color: "inherit", textDecoration: "none" }}
       >
         Phillip Paul
-      </a>
+      </Link>
     </p>
   )
 }
