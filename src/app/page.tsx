@@ -8,6 +8,7 @@ import { PreviewTile } from "@/components/main/PreviewTile"
 import PostTile from "@/components/main/PostTile"
 import request from "graphql-request"
 import { queryPostsAll } from "@/constants/queries"
+import { IPostTileProps } from "@/types/base.types"
 
 // export async function generateMetadata() {}
 // export const metadata: Metadata = {
@@ -15,18 +16,6 @@ import { queryPostsAll } from "@/constants/queries"
 // }
 
 const fetcher = (query: any) => request(process.env.NEXT_PUBLIC_GRAPH_CMS_API_URL as string, query)
-
-interface IPostTileProps {
-  slug: string,
-  title: string,
-  date: Date,
-  preview: string,
-  body: string,
-  type: string,
-  image: { url: string },
-  imageSource: string,
-  imageLicense: string,
-}
 
 export default function Page() {
   const { data, error, isLoading }: any = useSWR(queryPostsAll, fetcher)

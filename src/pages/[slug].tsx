@@ -8,41 +8,14 @@ import "prismjs/plugins/line-numbers/prism-line-numbers"
 import "prismjs/plugins/line-numbers/prism-line-numbers.css"
 
 import { RichText } from "@graphcms/rich-text-react-renderer"
-import { RichTextContent } from "@graphcms/rich-text-types"
 
 import "./custom-prism-vsc-dark-plus.css"
 
 import "./page.css"
 import PostHeader from "@/components/header/PostHeader"
 import { SEO } from "@/components/header/SEO"
-
-interface IPost {
-  post: IPostProps
-}
-
-interface IPostProps {
-  author: string,
-  body: string,
-  date: Date,
-  metadescription: string,
-  metakeywords: string[],
-  preview: string,
-  rtBody: { raw: RichTextContent },
-  slug: string,
-  title: string,
-  type: string,
-  tags: string[]
-}
-
-interface IPostIntroProps {
-  author: string,
-  title: string,
-  date: Date,
-}
-
-interface IPostMarkdownProps {
-  rtBody: { raw: RichTextContent },
-}
+import { getQueryPostBySlug, queryPostsForPaths } from "@/constants/queries"
+import { IPostIntroProps, IPostMarkdownProps, IPostProps } from "@/types/base.types"
 
 export async function getStaticPaths() {
   const resRaw = await fetch(process.env.NEXT_PUBLIC_GRAPH_CMS_API_URL as string, {
@@ -51,26 +24,7 @@ export async function getStaticPaths() {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      query: `{
-        posts {
-          id
-          title
-          date
-          body
-          rtBody { raw }
-          preview
-          slug
-          type
-          tags
-          image {
-            url
-          }
-          imageSource
-          imageLicense
-          metadescription
-          metakeywords
-        }
-      }`
+      query: queryPostsForPaths
     })
   })
 
@@ -93,27 +47,7 @@ export async function getStaticProps({ params }: any) {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      query: `{
-        post(where: { slug: "${params.slug}" }) {
-          id
-          author
-          title
-          date
-          body
-          rtBody { raw }
-          preview
-          slug
-          type
-          tags
-          image {
-            url
-          }
-          imageSource
-          imageLicense
-          metadescription
-          metakeywords
-        }
-      }`
+      query: getQueryPostBySlug(params.slug)
     })
   })
 
@@ -121,7 +55,6 @@ export async function getStaticProps({ params }: any) {
 
   return { props: { post: data.post } }
 }
-
 
 export default function Post({ post }: { post: IPostProps }) {
   return (

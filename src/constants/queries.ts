@@ -135,3 +135,34 @@ export const queryPostsTesting = `
   }
 }
 `
+
+export const queryPostsForPaths = `{
+  posts {
+    id
+    title
+    slug
+    type
+  }
+}`
+
+export const getQueryPostBySlug = (slug: string) => `{
+  post(where: { slug: "${slug}" }) {
+    id
+    author
+    title
+    date
+    body
+    rtBody { raw }
+    preview
+    slug
+    type
+    tags
+    image {
+      url
+    }
+    imageSource
+    imageLicense
+    metadescription
+    metakeywords
+  }
+}`

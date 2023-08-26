@@ -7,20 +7,9 @@ import PostTile from "@/components/main/PostTile"
 
 import "./page.css"
 import { queryPostsProtocols } from "@/constants/queries"
+import { IPostTileProps } from "@/types/base.types"
 
 const fetcher = (query: any) => request(process.env.NEXT_PUBLIC_GRAPH_CMS_API_URL as string, query)
-
-interface IPostTileProps {
-  slug: string,
-  title: string,
-  date: Date,
-  preview: string,
-  body: string,
-  type: string,
-  image: { url: string },
-  imageSource: string,
-  imageLicense: string,
-}
 
 export default function Page() {
   const { data, error, isLoading }: any = useSWR(queryPostsProtocols, fetcher)
