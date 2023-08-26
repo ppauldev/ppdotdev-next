@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@types/prismjs": "1.26.0",
+    "@types/react-helmet": "^6.1.6",
     "encoding": "0.1.13",
     "next-sitemap": "4.2.2"
   }

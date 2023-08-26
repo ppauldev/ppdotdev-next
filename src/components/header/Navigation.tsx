@@ -32,7 +32,7 @@ const Navigation: React.FC<INavigation> = (): React.ReactElement => {
               <li
                 key={attributeValue}
                 id={attributeValue === "coffee" ? "special" : ""}
-                className={pathname.replace("/", "") === attributeValue ? "active" : ""}
+                className={(pathname as string).replace("/", "") === attributeValue ? "active" : ""}
                 onClick={() => router.push(`/${attributeValue}`)}
                 value={attributeValue}
               >
