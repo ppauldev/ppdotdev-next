@@ -92,7 +92,7 @@ const PostMarkdown: React.FC<IPostMarkdownProps> = ({ rtBody }): React.ReactElem
     Prism.highlightAll()
   }, [isMounted])
 
-  if (!rtBody || !isMounted) {
+  if (!rtBody || !isMounted || !rtBody.raw) {
     return (<NoContent />)
   }
 
@@ -100,9 +100,9 @@ const PostMarkdown: React.FC<IPostMarkdownProps> = ({ rtBody }): React.ReactElem
     <RichText
       content={rtBody?.raw}
       renderers={{
-        a: ({ children, className, href, id, title, rel }) => {
+        a: ({ children, href }) => {
           return (
-            <Link className={className} href={href ?? ""} id={id} title={title} rel={rel}>
+            <Link href={href ?? "https://www.google.com"}>
               {children}
             </Link>
           )
