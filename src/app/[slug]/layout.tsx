@@ -1,7 +1,5 @@
-import { ThemeProvider } from "@/components/theme-provider"
-import "./globals.css"
+import "../globals.css"
 import type { Metadata, Viewport } from "next"
-import Navigation from "@/components/header/Navigation"
 import Footer from "@/components/footer/Footer"
 
 export const metadata: Metadata = {
@@ -19,29 +17,16 @@ export const viewport: Viewport = {
   ],
 }
 
-export default function RootLayout({
+export default function SlugLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <div className="flex min-h-screen flex-col bg-gradient-to-b from-background to-muted">
-            <Navigation />
-            <section className="flex-1 pt-16 relative bg-[linear-gradient(to_bottom,transparent_50%,hsl(var(--muted))_50%)]">
-              {children}
-            </section>
-            <Footer />
-          </div>
-        </ThemeProvider>
-      </body>
-    </html>
+    <div className="flex min-h-screen flex-col bg-gradient-to-b from-background to-muted">
+      <main className="flex-1">
+        {children}
+      </main>
+    </div>
   )
 }

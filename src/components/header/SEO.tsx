@@ -1,17 +1,15 @@
-import * as React from "react"
+import { Metadata } from "next"
 
-import { Helmet } from "react-helmet"
+interface SEOProps {
+  metaDescription: string
+  metaKeywords: string[]
+  title: string
+}
 
-interface ISEO { metaDescription: string; metaKeywords: string[]; title: string; };
-
-export const SEO = ({ metaDescription, metaKeywords, title }: ISEO) => {
-  return (
-    <Helmet htmlAttributes={{ lang: "en" }}>
-      <meta charSet="utf-8" />
-      <meta name="description" content={metaDescription.replace(/^(.{152}[^\s]*).*/, "$1")} />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="keywords" content={metaKeywords.join(", ")} />
-      <title>{title}</title>
-    </Helmet>
-  )
+export function generateMetadata({ metaDescription, metaKeywords, title }: SEOProps): Metadata {
+  return {
+    title,
+    description: metaDescription.replace(/^(.{152}[^\s]*).*/, "$1"),
+    keywords: metaKeywords.join(", "),
+  }
 }
