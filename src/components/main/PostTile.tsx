@@ -28,14 +28,13 @@ export default function PostTile({ post }: IPostTileProps) {
   return (
     <Link href={`/${post.slug}`} className="block no-underline group">
       <Card className="h-[470px] m-2.5 transition-all hover:border-foreground/20 flex flex-col overflow-hidden">
-        <div className="overflow-hidden">
+        <div className="relative w-full h-[200px] overflow-hidden">
           <Image
             src={post.image.url}
             alt={post.title}
-            width={600}
-            height={400}
-            className="h-[200px] w-full object-cover rounded-t-lg transition-transform duration-500 group-hover:scale-110"
-            style={{ height: "auto" }}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-110"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
         <div className="flex flex-col flex-1">

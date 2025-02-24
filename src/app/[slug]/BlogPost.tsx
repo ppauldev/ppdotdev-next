@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useMemo } from "react"
+import { useEffect, useState, useMemo, Suspense } from "react"
 import moment from "moment"
 import { RichText } from "@graphcms/rich-text-react-renderer"
 import Link from "next/link"
@@ -60,7 +60,7 @@ function PostSkeleton() {
   )
 }
 
-export default function BlogPost({ slug }: { slug: string }) {
+function BlogPostContent({ slug }: { slug: string }) {
   const [post, setPost] = useState<IPostProps | null>(null)
   const [highlighter, setHighlighter] = useState<any>(null)
   const [showScrollTop, setShowScrollTop] = useState(false)
@@ -194,5 +194,13 @@ export default function BlogPost({ slug }: { slug: string }) {
         </button>
       )}
     </div>
+  )
+}
+
+export default function BlogPost({ slug }: { slug: string }) {
+  return (
+    <Suspense fallback={<PostSkeleton />}>
+      <BlogPostContent slug={slug} />
+    </Suspense>
   )
 } 

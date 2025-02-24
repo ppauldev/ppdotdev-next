@@ -9,7 +9,7 @@ import { ModeToggle } from "@/components/mode-toggle"
 import { motion } from "framer-motion"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu } from "lucide-react"
-import { useState } from "react"
+import { useState, Suspense } from "react"
 
 const navigationItems: string[][] = [
   // ["coffee", "Books + Coffee"],
@@ -31,7 +31,7 @@ const shimmerStyles = `
 }
 `.trim()
 
-export default function Navigation() {
+function NavigationContent() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const currentCategory = searchParams.get('category')
@@ -139,5 +139,19 @@ export default function Navigation() {
         </div>
       </motion.header>
     </>
+  )
+}
+
+export default function Navigation() {
+  return (
+    <Suspense fallback={
+      <motion.header className={cn("fixed top-0 z-50 w-full border-b bg-background/95 shadow-sm")}>
+        <div className="container flex h-16 items-center">
+          {/* Simplified header for loading state */}
+        </div>
+      </motion.header>
+    }>
+      <NavigationContent />
+    </Suspense>
   )
 }

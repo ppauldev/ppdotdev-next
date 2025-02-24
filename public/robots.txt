@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.phillippaul.dev
+
+# Sitemaps
+Sitemap: https://www.phillippaul.dev/sitemap.xml
