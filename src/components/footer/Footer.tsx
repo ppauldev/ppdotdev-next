@@ -1,61 +1,44 @@
 "use client"
 
-import * as React from "react"
+import Link from "next/link"
+import { cn } from "@/lib/utils"
+import TechTag from "../main/TechTag"
 
-import "./footer.css"
-import TechTag from "../main/TechTag";
-import Link from "next/link";
+export default function Footer() {
+  const currentYear = new Date().getFullYear()
 
-interface IFooter { }
-
-const Footer: React.FC<IFooter> = (): React.ReactElement => {
   return (
-    <footer>
-      <div>
-        <div className="footer-item-wrapper author">
-          <SiteStamp />
-        </div>
-        <div id="footer-break">|</div>
-        <div className="footer-item-wrapper">
-          <p>contact:</p>
-          <div className="tech-tags">
-            <TechTag key="github" keyword="github" />
-            <TechTag key="linkedin" keyword="linkedin" />
-            <div id="link-mail-form">
-              <TechTag key="mail" keyword="mail" />
+    <footer className="w-full border-t border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container py-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+          {/* Left: Copyright */}
+          <div className="text-center md:text-left">
+            <p className="text-xs text-muted-foreground/60 font-medium tracking-wider">
+              © {currentYear} | Phillip Paul
+            </p>
+          </div>
+
+          {/* Center: Contact */}
+          <div className="flex justify-center">
+            <div className="flex items-center gap-4 bg-muted/20 hover:bg-muted/30 transition-colors rounded-full px-5 py-1.5">
+              <TechTag keyword="github" />
+              <TechTag keyword="linkedin" />
+              <TechTag keyword="mail" />
             </div>
           </div>
-        </div>
-        <div id="footer-break">|</div>
-        <div className="footer-item-wrapper">
-          <p>powered by:</p>
-          <div className="tech-tags">
-            <TechTag key="react" keyword="react" />
-            <TechTag key="typescript" keyword="typescript" />
-            <TechTag key="nextjs" keyword="nextjs" />
-            <TechTag key="graphcms" keyword="graphcms" />
-            <TechTag key="vercel" keyword="vercel" />
+
+          {/* Right: Powered by */}
+          <div className="flex justify-center md:justify-end">
+            <div className="inline-flex items-center gap-3 bg-muted/20 hover:bg-muted/30 transition-colors rounded-full px-5 py-1.5">
+              <TechTag keyword="react" />
+              <TechTag keyword="typescript" />
+              <TechTag keyword="nextjs" />
+              <TechTag keyword="graphcms" />
+              <TechTag keyword="vercel" />
+            </div>
           </div>
         </div>
       </div>
     </footer>
   )
 }
-
-const SiteStamp = () => {
-  return (
-    <p>
-      © {new Date().getFullYear() + " "}
-      <Link
-        href="https://ppauldev.github.io/cv/"
-        hrefLang="en"
-        rel="author"
-        style={{ color: "inherit", textDecoration: "none" }}
-      >
-        Phillip Paul
-      </Link>
-    </p>
-  )
-}
-
-export default Footer

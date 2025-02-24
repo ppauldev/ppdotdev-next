@@ -13,10 +13,11 @@ import "./custom-prism-vsc-dark-plus.css"
 
 import "./page.css"
 import PostHeader from "@/components/header/PostHeader"
-import { SEO } from "@/components/header/SEO"
+//import { SEO } from "@/components/header/SEO"
 import { getQueryPostBySlug, queryPostsForPaths } from "@/constants/queries"
 import { IPostIntroProps, IPostMarkdownProps, IPostProps } from "@/types/base.types"
 import Link from "next/link"
+import { ThemeProvider } from "@/components/theme-provider"
 
 export async function getStaticPaths() {
   const resRaw = await fetch(process.env.NEXT_PUBLIC_GRAPH_CMS_API_URL as string, {
@@ -60,7 +61,7 @@ export async function getStaticProps({ params }: any) {
 export default function Post({ post }: { post: IPostProps }) {
   return (
     <div className="post-template">
-      <SEO metaDescription={post.metadescription} metaKeywords={post.metakeywords} title={post.title} />
+      {/* <SEO metaDescription={post.metadescription} metaKeywords={post.metakeywords} title={post.title} /> */}
       <PostHeader keywords={post.tags} />
       <article className="post">
         <div className="post-content">

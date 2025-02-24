@@ -1,0 +1,226 @@
+/* Common styles that don't change between modes */
+pre,
+pre>div {
+  overflow-x: auto;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Container styles */
+.relative.rounded-xl {
+  background-color: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  margin: 1.5rem 0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Language label */
+.text-xs.text-slate-400 {
+  font-family: ui-monospace, monospace;
+  text-transform: lowercase;
+  color: #848484;
+  font-size: 0.75rem;
+}
+
+/* Shiki container */
+.shiki {
+  margin: 0 !important;
+  padding: 1rem !important;
+  padding-left: 3rem !important;
+  background-color: #FFFFFF !important;
+  color: #383A42 !important;
+  font-size: 0.875rem;
+  line-height: 2 !important;
+  tab-size: 2;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Code container */
+.shiki code {
+  display: grid !important;
+  overflow-x: auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+  counter-reset: line;
+  background: transparent !important;
+}
+
+/* Line styles */
+.shiki .line {
+  padding-left: 1rem;
+  min-height: 1.2rem;
+  border: none !important;
+}
+
+/* Line numbers */
+.shiki .line::before {
+  counter-increment: line;
+  content: counter(line);
+  position: absolute;
+  left: 1rem;
+  color: #A0AEC0;
+  text-align: right;
+  width: 2rem;
+  padding-right: 1.5rem;
+  font-size: 0.8rem;
+  opacity: 0.7;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Highlighted line */
+.shiki .line[data-highlighted-line] {
+  background: rgba(200, 200, 255, 0.1);
+  margin: 0 -1rem;
+  padding: 0 1rem;
+  border-left: 2px solid #60A5FA !important;
+}
+
+/* Light mode syntax colors */
+.shiki .line span[style*="color:#F97583"] {
+  color: #A626A4 !important;
+}
+
+/* keywords */
+.shiki .line span[style*="color:#B392F0"] {
+  color: #4078F2 !important;
+}
+
+/* function */
+.shiki .line span[style*="color:#9ECBFF"] {
+  color: #50A14F !important;
+}
+
+/* strings */
+.shiki .line span[style*="color:#79B8FF"] {
+  color: #986801 !important;
+}
+
+/* numbers */
+.shiki .line span[style*="color:#E1E4E8"] {
+  color: #383A42 !important;
+}
+
+/* text */
+.shiki .line span[style*="color:#FFAB70"] {
+  color: #E45649 !important;
+}
+
+/* variables */
+
+/* Dark mode adjustments */
+:root[class~="dark"] .relative.rounded-xl {
+  background-color: #1F2028;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+:root[class~="dark"] .shiki {
+  background-color: #1F2028 !important;
+  color: #c8d3f5 !important;
+}
+
+:root[class~="dark"] .shiki .line::before {
+  color: #636363;
+}
+
+/* Dark mode syntax colors */
+:root[class~="dark"] .shiki .line span[style*="color:#F97583"] {
+  color: #86E1FC !important;
+}
+
+:root[class~="dark"] .shiki .line span[style*="color:#B392F0"] {
+  color: #82AAFF !important;
+}
+
+:root[class~="dark"] .shiki .line span[style*="color:#9ECBFF"] {
+  color: #C3E88D !important;
+}
+
+:root[class~="dark"] .shiki .line span[style*="color:#79B8FF"] {
+  color: #C099FF !important;
+}
+
+:root[class~="dark"] .shiki .line span[style*="color:#E1E4E8"] {
+  color: #C8D3F5 !important;
+}
+
+:root[class~="dark"] .shiki .line span[style*="color:#FFAB70"] {
+  color: #FF98A4 !important;
+}
+
+/* Dark mode inline code */
+:root[class~="dark"] :not(pre)>code {
+  background-color: #1F2028 !important;
+  color: #c8d3f5 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-line],
+code>[data-line]::before {
+  display: none;
+}
+
+/* Inline code snippets */
+:not(pre)>code {
+  background-color: #F3F4F6 !important;
+  color: #1F2937 !important;
+  border: 1px solid #E5E7EB;
+  padding: 0.2rem 0.4rem !important;
+  border-radius: 0.3rem;
+  font-size: 0.875rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Copy button */
+.copy-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  opacity: 0.7;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.copy-button:hover {
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.copy-button svg {
+  stroke-width: 1.5;
+}
+
+/* Toast animation */
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.fixed {
+  animation: slideIn 0.2s ease-out;
+}
+
+/* Light mode copy button */
+.copy-button {
+  color: #64748B;
+}
+
+/* Dark mode copy button */
+:root[class~="dark"] .copy-button {
+  color: #848484;
+}
